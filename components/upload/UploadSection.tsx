@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { FileDropzone } from "./FileDropzone";
 import { EmailCapture } from "./EmailCapture";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, AlertCircle } from "lucide-react";
 
 export function UploadSection() {
@@ -51,43 +51,34 @@ export function UploadSection() {
   };
 
   return (
-    <section id="upload" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight text-navy-500 sm:text-4xl">
+    <section id="upload" className="py-24 bg-gray-50">
+      <div className="container mx-auto px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center mb-12">
+          <h2 className="text-3xl font-semibold tracking-tight text-navy-500">
             Get Your Free Analysis
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
-            Upload your claims data and receive an AI-powered executive summary
-            in your inbox within minutes.
+          <p className="mt-4 text-lg text-gray-500">
+            Upload your claims data and receive an AI-powered executive summary.
           </p>
         </div>
 
-        <div className="mx-auto max-w-xl">
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle>Upload Claims Data</CardTitle>
-              <CardDescription>
-                Export your claims from your practice management system as .xlsx
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
+        <div className="mx-auto max-w-md">
+          <Card className="border-0 shadow-lg">
+            <CardContent className="p-8 space-y-5">
               <FileDropzone
                 onFileAccepted={setFile}
                 isUploading={isUploading}
               />
 
-              <div className="border-t border-gray-200 pt-6">
-                <EmailCapture
-                  email={email}
-                  onEmailChange={setEmail}
-                  disabled={isUploading}
-                />
-              </div>
+              <EmailCapture
+                email={email}
+                onEmailChange={setEmail}
+                disabled={isUploading}
+              />
 
               {error && (
-                <div className="flex items-center gap-2 rounded-lg bg-red-50 p-3 text-sm text-red-700">
-                  <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                <div className="flex items-center gap-2 rounded-lg bg-red-50 p-3 text-sm text-red-600">
+                  <AlertCircle className="h-4 w-4 flex-shrink-0" />
                   <span>{error}</span>
                 </div>
               )}
@@ -111,12 +102,8 @@ export function UploadSection() {
                 )}
               </Button>
 
-              <p className="text-center text-xs text-gray-500">
-                By uploading, you agree to our{" "}
-                <a href="/privacy" className="text-primary-500 hover:underline">
-                  Privacy Policy
-                </a>
-                . Your data is processed in memory only and never stored.
+              <p className="text-center text-xs text-gray-400">
+                Your data is processed in memory only and never stored.
               </p>
             </CardContent>
           </Card>
